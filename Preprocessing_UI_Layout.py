@@ -86,7 +86,6 @@ class Ui_winMain(object):
         self.verticalLayout_2.addWidget(self.scrollArea)
         self.gridLayout_8.addLayout(self.verticalLayout_2, 0, 0, 1, 2)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/mainTab/icons/main_engineering.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.tbwMain.addTab(self.wDataScreening, icon, "")
         
         self.wFiltering = QtWidgets.QWidget()
@@ -232,7 +231,6 @@ class Ui_winMain(object):
         
         
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(":/mainTab/icons/main_diagnosis.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.tbwMain.addTab(self.wFiltering, icon1, "")
         self.wSetting = QtWidgets.QWidget()
         self.wSetting.setObjectName("wSetting")
@@ -243,7 +241,6 @@ class Ui_winMain(object):
         self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap(":/mainTab/icons/main_setting.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.tbwMain.addTab(self.wSetting, icon2, "")
         self.wHelp = QtWidgets.QWidget()
         self.wHelp.setObjectName("wHelp")
@@ -260,7 +257,6 @@ class Ui_winMain(object):
         self.tbwHelp.addTab(self.wManual, "")
         self.gridLayout_6.addWidget(self.tbwHelp, 0, 0, 1, 1)
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap(":/mainTab/icons/main_help.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.tbwMain.addTab(self.wHelp, icon3, "")
         self.gridLayout.addWidget(self.tbwMain, 0, 1, 1, 1)
         winMain.setCentralWidget(self.centralwidget)
