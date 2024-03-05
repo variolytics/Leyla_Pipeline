@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QTextEdit, Q
 from PyQt5.QtGui import QIcon, QPixmap
 from PyQt5.QtCore import QSize
 from Preprocessing_UI_Layout import Ui_winMain
+import pandas as pd
 
 
 
@@ -85,7 +86,6 @@ class MyMainWindow(QMainWindow):
 
 
     def updateRemoveButtonState(self):
-        # Enable the removeButton if there's selected text, otherwise disable it
         selected_items_count = self.ui.SelectedFile_listWidget.count()
         self.ui.removeButton.setEnabled(selected_items_count > 0)
 
@@ -99,24 +99,28 @@ class MyMainWindow(QMainWindow):
             if data:
                 self.ui.figure.clear()
                 ax = self.ui.figure.add_subplot(111)
-                ax.scatter(data["Time"], data["15.0"])
-                # Adjust x-axis label position:
-                ax.set_xlabel("Time (s)", labelpad=15) # Increase labelpad to 15 points
-                ax.set_ylabel("15.0")
-                # Optionally, adjust bottom margin for more space:
+                ax.scatter(data["Index"], data["15.0"])
+                ax.set_xlabel("Index", labelpad=15, fontsize=12)
+                ax.set_ylabel("15.0", fontsize=12)
+
                 plt.subplots_adjust(bottom=0.25)
                 self.ui.canvas.draw()
 
     def read_csv(self, filename):
         try:
-            with open(filename, 'r') as file:
-                reader = csv.DictReader(file)
-                data = {"Time": [], "15.0": []}
-                for row in reader:
-                    data["Time"].append(float(row["Time"]))
-                    data["15.0"].append(float(row["15.0"]))
+            # Read CSV file using pandas
+            df = pd.read_csv(filename, sep=';', decimal=',')
+    
+            # Extract required columns
+            data = {
+                "Index": df.index.tolist(),  # Use the DataFrame index as x-axis values
+                "15.0": df["15.0"].astype(float).tolist()
+            }
+    
+            # Set plot label
             filename_without_path = os.path.basename(filename)
-            self.ui.Plot_label.setText(f"Bright Cycle Preview:{filename_without_path}")
+            self.ui.Plot_label.setText(f"Preview: {filename_without_path}")
+    
             return data
         except Exception as e:
             print("Error reading CSV:", e)

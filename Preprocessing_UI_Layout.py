@@ -278,7 +278,7 @@ class Ui_winMain(object):
         # Add a toolbar for zoom, pan, and home
         self.toolbar = NavigationToolbar(self.canvas)
         self.verticalLayout_4.addWidget(self.toolbar)
-        
+
         # Set font size and minimum width for the tabs
         tab_style = "QTabBar::tab { font-size: 11pt; min-width: 150px; }"
         self.tbwMain.setStyleSheet(tab_style)  
@@ -286,6 +286,8 @@ class Ui_winMain(object):
         self.retranslateUi(winMain)
         self.tbwMain.setCurrentIndex(0)
         self.tbwHelp.setCurrentIndex(1)
+        self.tbwMain.setTabEnabled(2, False)
+        self.tbwMain.setTabEnabled(3, False)
         QtCore.QMetaObject.connectSlotsByName(winMain)
 
     def retranslateUi(self, winMain):
